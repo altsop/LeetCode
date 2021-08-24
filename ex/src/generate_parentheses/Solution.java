@@ -24,8 +24,8 @@ class Solution {
     }
 
     private void process(Set<String> correctPairs) {
-        for(String combination: correctPairs) {
-            if(combination.length() / 2 == n) {
+        for (String combination : correctPairs) {
+            if (combination.length() / 2 == n) {
                 if (!combinations.contains(combination)) {
                     combinations.add(combination);
                     result.add(combination);
@@ -41,7 +41,7 @@ class Solution {
         String pair = "()";
         Set<String> permutations = new HashSet<>();
 
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             StringBuilder permutation = new StringBuilder(s);
             permutation.insert(i, pair);
             permutations.add(permutation.toString());
@@ -59,4 +59,30 @@ class Solution {
         System.out.println(solution.generateParenthesis(3));
     }
 
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+
+    @Override
+    public String toString() {
+        return "Solution{" +
+                "n=" + n +
+                ", result=" + result +
+                ", combinations=" + combinations +
+                '}';
+    }
 }
