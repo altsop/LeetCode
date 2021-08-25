@@ -48,7 +48,6 @@ class Solution {
         }
 
         return 0;
-// test
     }
 
     public static class ListNode {
