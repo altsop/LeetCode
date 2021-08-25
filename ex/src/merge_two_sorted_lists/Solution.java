@@ -1,7 +1,5 @@
 package merge_two_sorted_lists;
 
-import java.util.List;
-
 // https://leetcode.com/problems/merge-two-sorted-lists/
 class Solution {
 
@@ -50,7 +48,7 @@ class Solution {
         }
 
         return 0;
-
+// test
     }
 
     public static class ListNode {
