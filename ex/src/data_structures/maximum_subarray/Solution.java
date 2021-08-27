@@ -31,23 +31,7 @@ public class Solution {
         return max;
     }
 
-    public int maxSubArray2(int[] nums) {
-        int p=0;
-        int sum = 0;
-        int max= Integer.MIN_VALUE;
-        while(p<nums.length){
-            sum+=nums[p];
-            if(sum>max)
-                max=sum;
-            if(sum<0)
-                sum=0;
-            p++;
-        }
-        return max;
-    }
-
     public static void main(String[] args) {
-        System.out.println(new Solution().maxSubArray2(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
         System.out.println(new Solution().maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
     }
 
