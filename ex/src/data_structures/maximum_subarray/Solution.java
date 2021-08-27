@@ -12,14 +12,27 @@ public class Solution {
     // try coding another solution using the divide and conquer approach, which is more subtle.
     public int maxSubArray(int[] nums) {
         // we cannot sort because this part has to be a contiguous part of the initial array
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        int currentIndex = 0;
 
-        // nums<starting index of substring, sum>
-        Map<Integer, Integer> sums = new HashMap<>();
+        while (currentIndex < nums.length) {
+            sum += nums[currentIndex];
+            if (sum > max) {
+                max = sum;
+            }
+            if (sum < 0) {
+                sum = 0;
+            }
 
-        for (int i = 0; i < nums.length; i++) {
-            int sum = sums.get(i) != null ? sums.get(i) : 0;
-            sums.put(i, sum + nums[i]);
+            currentIndex++;
         }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }
