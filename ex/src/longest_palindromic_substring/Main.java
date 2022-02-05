@@ -19,7 +19,7 @@ public class Main {
 
         System.out.println(new Solution3().longestPalindrome("babad")); // bab
         System.out.println(new Solution3().longestPalindrome("cbbd")); // bb
-        System.out.println(new Solution3().longestPalindrome("a")); // a
+        System.out.println(new Solution3().longestPalindrome("swap_pairs")); // a
         System.out.println(new Solution3().longestPalindrome("ac")); // a
         System.out.println(new Solution3().longestPalindrome("")); //
     }
