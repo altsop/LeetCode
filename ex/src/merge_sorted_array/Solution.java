@@ -5,12 +5,16 @@ import java.util.Arrays;
 public class Solution {
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
+        if (n == 0) {
+            return;
+        }
+
         // 1. compare element from 1 with 2
         // 2. shift if needed
         // 3. fill the rest
         int index1 = 0;
         int index2 = 0;
-        while (index2 < n) {
+        while (index1 < m) {
             int element1 = nums1[index1];
             int element2 = nums2[index2];
 
@@ -27,12 +31,15 @@ public class Solution {
                 }
 
                 index2++;
-            } else if (element1 == 0) {
-                nums1[index1] = element2;
-                index2++;
             }
 
             index1++;
+        }
+
+        if (index2 < n) {
+            for (int i = index2; i < n; i++) {
+                nums1[m + i] = nums2[i];
+            }
         }
     }
 
