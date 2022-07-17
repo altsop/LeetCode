@@ -8,8 +8,7 @@ public class SnakeCaseTextConverter {
     }
 
     public static void main(String[] args) {
-        String originalText = "  Merge Sorted Array\n" +
-                "\n";
+        String originalText = "Letter Combinations of a Phone Number";
         String snakeCased = convertToString(originalText);
         System.out.println(snakeCased);
     }
