@@ -8,7 +8,7 @@ public class SnakeCaseTextConverter {
     }
 
     public static void main(String[] args) {
-        String originalText = "Letter Combinations of a Phone Number";
+        String originalText = "Isomorphic Strings";
         String snakeCased = convertToString(originalText);
         System.out.println(snakeCased);
     }
