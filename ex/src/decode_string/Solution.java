@@ -1,5 +1,7 @@
 package decode_string;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class Solution {
@@ -8,59 +10,55 @@ public class Solution {
         int currentIndex = 0;
         StringBuilder result = new StringBuilder();
         while (currentIndex < s.length()) {
-            Stack<Character> stack = composeStack(s, currentIndex);
-            currentIndex += stack.size() + 1;
-            result.append(composeElement(stack));
+            Queue<Character> queue = composeQueue(s, currentIndex);
+            currentIndex += queue.size() + 1;
+            result.append(decodeSubstring(queue, false));
         }
 
         return result.toString();
     }
 
-    private String composeElement(Stack<Character> stack) {
-        boolean isMultiplierNext = false;
-        boolean isRepeatedNext = false;
+    private String decodeSubstring(Queue<Character> queue, boolean earlyStop) {
+        StringBuilder result = new StringBuilder();
+        int multiplier = 1;
 
-        StringBuilder repeated = new StringBuilder();
-        StringBuilder multiplier = new StringBuilder();
-
-        while (!stack.isEmpty()) {
-            char currentElement = stack.pop();
-            if (isMultiplierNext) {
-                while (Character.isDigit(currentElement)) {
-                    multiplier.insert(0, currentElement);
-
-                    if (stack.isEmpty()) {
-                        break;
-                    }
-                    currentElement = stack.pop();
+        while (!queue.isEmpty()) {
+            char element = queue.poll();
+            if (element == '[') {
+                String repeated = decodeSubstring(queue, true);
+                result.append(repeated.repeat(multiplier));
+            } else if (element == ']') {
+                if (earlyStop) {
+                    return result.toString();
                 }
-                repeated = new StringBuilder(repeated.toString().repeat(Integer.parseInt(multiplier.toString())));
-                isMultiplierNext = false;
-                multiplier = new StringBuilder();
-
-                if (stack.isEmpty() && Character.isDigit(currentElement)) {
-                    break;
-                }
-            }
-
-            if (currentElement == ']') {
-                isRepeatedNext = true;
-            } else if (currentElement == '[') {
-                isMultiplierNext = true;
-                isRepeatedNext = false;
-            } else if (isRepeatedNext) {
-                repeated.append(currentElement);
+            } else if (Character.isDigit(element)) {
+                multiplier = parseMultiplier(queue, element);
             } else {
-                repeated.insert(0, currentElement);
+                result.append(element);
             }
-
         }
 
-        return repeated.toString();
+        return result.toString();
     }
 
-    private Stack<Character> composeStack(String str, int index) {
-        Stack<Character> stack = new Stack<>();
+    private int parseMultiplier(Queue<Character> queue, Character startingElement) {
+        StringBuilder result = new StringBuilder();
+        result.append(startingElement);
+        while (!queue.isEmpty()) {
+            char element = queue.peek();
+            if (!Character.isDigit(element)) {
+                break;
+            }
+
+            result.append(element);
+            queue.poll();
+        }
+
+        return Integer.parseInt(result.toString());
+    }
+
+    private Queue<Character> composeQueue(String str, int index) {
+        Queue<Character> stack = new LinkedList<>();
         int opened = 0;
         boolean atLeastOneOpened = false;
 
@@ -78,7 +76,7 @@ public class Solution {
                 break;
             }
 
-            stack.push(element);
+            stack.add(element);
             index++;
         }
 
@@ -89,10 +87,10 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
+        System.out.println(solution.decodeString("3[a2[c]]")); // accaccacc
         System.out.println(solution.decodeString("3[z]2[2[y]pq4[2[jk]e1[f]]]ef")); // ef
         System.out.println(solution.decodeString("10[ef]")); // ef
         System.out.println(solution.decodeString("ef")); // ef
-        System.out.println(solution.decodeString("3[a2[c]]")); // accaccacc
         System.out.println(solution.decodeString("3[a]2[bc]")); // aaabcbc
         System.out.println(solution.decodeString("2[abc]3[cd]ef")); // abcabccdcdcdef
     }
