@@ -15,6 +15,11 @@ public class Solution {
     }
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+        Boolean a = false;
+        if (a) {
+            System.out.println("----------------");
+        }
+
         int[] minPrice = new int[n];
         Arrays.fill(
                 minPrice,
