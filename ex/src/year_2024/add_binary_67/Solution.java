@@ -5,8 +5,8 @@ import java.util.Arrays;
 class Solution {
 
     public String addBinary(
-            String a,
-            String b
+            String a, // 11
+            String b // 111111
     ) {
         String longest = a.length() >= b.length() ? a : b;
         String shortest = a.length() < b.length() ? a : b;
@@ -49,7 +49,7 @@ class Solution {
 
     public static void main(String[] args) {
         final var solution = new Solution();
-        final var s1 = solution.addBinary("11", "11");
+        final var s1 = solution.addBinary("11", "111111");
         System.out.println(s1);
     }
 
