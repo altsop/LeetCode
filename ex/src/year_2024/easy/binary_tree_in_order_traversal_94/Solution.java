@@ -1,4 +1,4 @@
-package year_2024.binary_tree_in_order_traversal_94;
+package year_2024.easy.binary_tree_in_order_traversal_94;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package year_2024.remove_duplicates_from_sorted_list_83;
+package year_2024.easy.remove_duplicates_from_sorted_list_83;
 
 /**
  * Definition for singly-linked list.

@@ -1,4 +1,4 @@
-package year_2024.sqrd_69;
+package year_2024.easy.sqrd_69;
 
 class Solution {
 

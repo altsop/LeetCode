@@ -1,4 +1,4 @@
-package year_2024.add_binary_67;
+package year_2024.easy.add_binary_67;
 
 import java.util.Arrays;
 
